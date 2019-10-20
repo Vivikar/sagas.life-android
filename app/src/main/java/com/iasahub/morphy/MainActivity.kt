@@ -14,10 +14,23 @@ import com.facebook.login.LoginResult
 import kotlinx.android.synthetic.main.activity_authenticated.*
 import org.json.JSONException
 import java.util.*
+import com.facebook.AccessToken
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private var callbackManager: CallbackManager? = null
+
+    public override fun onStart() {
+        super.onStart()
+        val accessToken = AccessToken.getCurrentAccessToken()
+        if (accessToken != null) {
+            //useLoginInformation(accessToken)
+            startActivity(Intent(applicationContext, AuthenticatedActivity::class.java))
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,5 +107,6 @@ class MainActivity : AppCompatActivity() {
 
         callbackManager?.onActivityResult(requestCode, resultCode, data)
     }
+
 }
 
