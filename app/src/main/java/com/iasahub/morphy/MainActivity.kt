@@ -19,6 +19,14 @@ class MainActivity : AppCompatActivity() {
 
     private var callbackManager: CallbackManager? = null
 
+    public override fun onStart() {
+        super.onStart()
+        val accessToken = AccessToken.getCurrentAccessToken()
+        if (accessToken != null) {
+            //useLoginInformation(accessToken)
+            startActivity(Intent(applicationContext, AuthenticatedActivity::class.java))
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
