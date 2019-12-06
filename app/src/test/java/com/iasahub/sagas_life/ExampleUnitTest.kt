@@ -1,4 +1,4 @@
-package com.iasahub.morphy
+package com.iasahub.sagas_life
 
 import org.junit.Test
 

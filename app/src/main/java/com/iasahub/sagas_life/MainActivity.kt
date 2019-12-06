@@ -1,4 +1,4 @@
-package com.iasahub.morphy
+package com.iasahub.sagas_life
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import com.facebook.*
 
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.iasahub.sagas_life.R
 import kotlinx.android.synthetic.main.activity_authenticated.*
 import org.json.JSONException
 import java.util.*

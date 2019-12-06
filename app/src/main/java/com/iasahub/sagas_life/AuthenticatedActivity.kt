@@ -1,8 +1,9 @@
-package com.iasahub.morphy
+package com.iasahub.sagas_life
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.facebook.login.LoginManager
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_authenticated.*
 import android.widget.ImageView
 
 import com.bumptech.glide.Glide
+import com.iasahub.sagas_life.R
 
 
 class AuthenticatedActivity : AppCompatActivity() {
@@ -95,6 +97,7 @@ class AuthenticatedActivity : AppCompatActivity() {
 
                 lg_email.setText(email)
                 lg_toekn.setText(accessToken.token)
+                Log.println(Log.INFO, "TOKEN_FB", accessToken.token)
                 //fb_image.setImageURI()
 
             } catch (e:JSONException) {
