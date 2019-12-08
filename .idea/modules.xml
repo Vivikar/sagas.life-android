@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/Android-sagas.life-android-app.iml" filepath="$PROJECT_DIR$/app/Android-sagas.life-android-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Android-sagas.life-android-sagas_life.iml" filepath="$PROJECT_DIR$/Android-sagas.life-android-sagas_life.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/sagas.life-android-app.iml" filepath="$PROJECT_DIR$/app/sagas.life-android-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/sagas.life-android-sagas_life.iml" filepath="$PROJECT_DIR$/sagas.life-android-sagas_life.iml" />

@@ -27,12 +27,12 @@ class SplashActivity: AppCompatActivity() {
         Handler().postDelayed(
             {
                 // После Splash Screen перенаправляем на нужную Activity
-                startActivity(Intent(applicationContext, MainActivity::class.java))
+                startActivity(Intent(applicationContext, Profile::class.java))
                 finish()
             },
             splashScreenDuration
         )
     }
 
-    private fun getSplashScreenDuration() = 1000L
+    private fun getSplashScreenDuration() = 100L
 }
