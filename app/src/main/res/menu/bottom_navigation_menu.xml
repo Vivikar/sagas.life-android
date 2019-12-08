@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sagas"
+        android:icon="@drawable/icons_ic_tabbar_home"
+        android:title="Sagas" />
+    <item
+        android:id="@+id/trends"
+        android:icon="@drawable/icons_ic_tabbar_trends"
+        android:title="Trends" />
+
+    <item
+        android:id="@+id/add_pic"
+        android:icon="@drawable/ic_add_to_photos_black_24dp"
+        android:title="Add Picture" />
+
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/icons_ic_tabbar_favorites"
+        android:title="Favorites" />
+    <item
+        android:id="@+id/mysaga"
+        android:icon="@drawable/icons_ic_tabbar_user_profile"
+        android:title="My saga" />
+</menu>

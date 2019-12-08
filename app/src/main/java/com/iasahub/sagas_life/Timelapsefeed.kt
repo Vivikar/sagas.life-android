@@ -3,6 +3,7 @@ package com.iasahub.sagas_life
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -27,7 +28,15 @@ class Timelapsefeed : AppCompatActivity(), OnTimelapseItemClickListener {
         TimeRecycler.addItemDecoration((DividerItemDecoration(this, 1)))
         TimeRecycler.adapter = TimelapseAdapter(timelapse_feed_list, this)
 
+
+        setSupportActionBar(toolbar)
         //setContentView(R.layout.activity_timelapsefeed)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
     fun addTimelapse(){
