@@ -11,8 +11,11 @@
         android:roundIcon="@drawable/it_saga_logo_80_x_80"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".SplashActivity"
+        <activity android:name=".Timelapsefeed"
+            android:theme="@style/AppTheme.Launcher">
+            </activity>
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".AuthenticatedActivity"></activity>
-        <activity android:name=".MainActivity"
+        <activity android:name=".AuthenticatedActivity" />
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.Launcher">
-
-
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

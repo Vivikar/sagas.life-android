@@ -27,7 +27,7 @@ class SplashActivity: AppCompatActivity() {
         Handler().postDelayed(
             {
                 // После Splash Screen перенаправляем на нужную Activity
-                startActivity(Intent(applicationContext, MainActivity::class.java))
+                startActivity(Intent(applicationContext, Timelapsefeed::class.java))
                 finish()
             },
             splashScreenDuration
