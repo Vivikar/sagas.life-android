@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -37,6 +38,15 @@ class Timelapsefeed : AppCompatActivity(), OnTimelapseItemClickListener {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.map -> {
+            // do stuff
+            Toast.makeText(this, item.itemId, Toast.LENGTH_LONG).show()
+
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     fun addTimelapse(){
