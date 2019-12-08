@@ -1,19 +1,17 @@
 package com.iasahub.sagas_life
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iasahub.sagas_life.databinding.ActivityTimelapsefeedBinding
 import kotlinx.android.synthetic.main.activity_timelapsefeed.*
 
-class Timelapsefeed : AppCompatActivity(), OnTimelapseItemClickListener {
+class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener {
 
     lateinit var binding: ActivityTimelapsefeedBinding
     lateinit var timelapse_feed_list: ArrayList<Timelapses>
@@ -42,8 +40,8 @@ class Timelapsefeed : AppCompatActivity(), OnTimelapseItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.map -> {
             // do stuff
-            Toast.makeText(this, item.itemId, Toast.LENGTH_LONG).show()
-
+            //Toast.makeText(this, item.itemId, Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, MapsActivity::class.java))
             true
         }
         else -> super.onOptionsItemSelected(item)
