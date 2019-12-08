@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_item_view.view.*
 
-class TimelapseAdapter(var items : ArrayList<Timelapses>) : RecyclerView.Adapter<TimelapseViewHolder>(){
+class TimelapseAdapter(var items : ArrayList<Timelapses>, var clickListener: OnTimelapseItemClickListener) : RecyclerView.Adapter<TimelapseViewHolder>(){
     override fun getItemCount(): Int {
         return items.size
     }
@@ -18,10 +18,12 @@ class TimelapseAdapter(var items : ArrayList<Timelapses>) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: TimelapseViewHolder, position: Int) {
-        holder.tName?.text = items.get(position).name
-        holder.tDescription?.text = items.get(position).description
-        holder.user_pic.setImageResource(items.get(position).logo)
-        holder.timelapse_pic.setImageResource(items.get(position).tpic)
+        //holder.tName?.text = items.get(position).name
+        //holder.tDescription?.text = items.get(position).description
+        //holder.user_pic.setImageResource(items.get(position).logo)
+        //holder.timelapse_pic.setImageResource(items.get(position).tpic)
+
+        holder.initialize(items.get(position), clickListener)
     }
 }
 
@@ -32,4 +34,45 @@ class TimelapseViewHolder(itemView:View) :RecyclerView.ViewHolder(itemView){
     var user_pic = itemView.user_pic
     var timelapse_pic = itemView.timelapse_pic
 
+
+    fun initialize(item: Timelapses, action:OnTimelapseItemClickListener){
+        tName.text = item.name
+        tDescription.text = item.description
+        user_pic.setImageResource(item.logo)
+        timelapse_pic.setImageResource(item.tpic)
+
+        itemView.setOnClickListener{
+            action.onItemClick(item, adapterPosition)
+        }
+    }
 }
+
+interface OnTimelapseItemClickListener {
+    fun  onItemClick(item: Timelapses, position: Int)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
