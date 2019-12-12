@@ -1,11 +1,12 @@
 package com.iasahub.sagas_life
 
-import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import com.iasahub.sagas_life.databinding.ActivityTimelapsePageBinding
-import com.iasahub.sagas_life.databinding.ActivityTimelapsefeedBinding
 import kotlinx.android.synthetic.main.activity_timelapse_page.*
 
 class TimelapsePageActivity : AppCompatActivity() {
@@ -22,6 +23,25 @@ class TimelapsePageActivity : AppCompatActivity() {
 
         go_back.setOnClickListener {
             onBackPressed()
+        }
+
+        timelapse_page_menu_btn.setOnClickListener {
+            val popupMenu = PopupMenu(this, it)
+            popupMenu.setOnMenuItemClickListener{item ->
+                when (item.itemId){
+                    R.id.timelapse_owner -> {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("str"))
+                        startActivity(intent)
+                        true
+                    }
+                    R.id.timelapse_co_author -> {
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.inflate(R.menu.timelaps_page_menu)
+            popupMenu.show()
         }
 
         //tname.text = getIntent().getStringExtra("TNAME")
