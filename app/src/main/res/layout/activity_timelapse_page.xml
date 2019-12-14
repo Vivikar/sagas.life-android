@@ -139,15 +139,16 @@
             app:srcCompat="@drawable/icons_ic_btn_slidefeed_share"
             android:background="@null"
             />
+
         <ImageButton
-            android:layout_marginTop="394dp"
+            android:id="@+id/open_comments_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
 
-            app:srcCompat="@drawable/icons_ic_btn_slidefeed_comments"
+            android:layout_marginTop="394dp"
             android:background="@null"
-            />
+            app:srcCompat="@drawable/icons_ic_btn_slidefeed_comments" />
 
         <ImageButton
             android:layout_marginTop="15dp"

@@ -44,6 +44,11 @@ class TimelapsePageActivity : AppCompatActivity() {
             popupMenu.show()
         }
 
+        open_comments_btn.setOnClickListener {
+            val intent = Intent(this, CommentsPageActivity::class.java)
+            startActivity(intent)
+        }
+
         //tname.text = getIntent().getStringExtra("TNAME")
         //timelapse_pic.setImageResource(())
     }

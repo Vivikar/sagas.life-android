@@ -11,7 +11,9 @@
     <color name="dark_grey_blue">#335066</color>
     <color name="white_87">#deffffff</color>
     <color name="white">#ffffff</color>
-    <color name="pea">#98bf1f</color>
+    <color name="pea">#4d4d4d</color>
+    <color name="grey_for_comm">#4d4d4d</color>
     <color name="white_12">#1effffff</color>
+    <color name="red_heart">#EE1717</color>
 
 </resources>

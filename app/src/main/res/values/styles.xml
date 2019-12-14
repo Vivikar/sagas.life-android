@@ -68,8 +68,41 @@
 
     </style>
 
+    <style name="TextStyle10">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/black_70</item>
+    </style>
 
+    <style name="TextStyle11">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/grey_for_comm</item>
+    </style>
 
+    <style name="heart_unliked_stile">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginTop">34dp</item>
+        <item name="android:layout_marginEnd">11dp</item>
+        <item name="android:backgroundTint">#00FFFFFF</item>
+    </style>
+    <style name="heart_liked_stile">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginTop">34dp</item>
+        <item name="android:layout_marginEnd">11dp</item>
+        <item name="android:backgroundTint">#00FFFFFF</item>
+        <item name="android:tint">@color/red_heart</item>
+    </style>
 
 
         <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">

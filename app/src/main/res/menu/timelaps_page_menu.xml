@@ -15,6 +15,4 @@
     <item
         android:id="@+id/delete_slide"
         android:title="Delete slide"/>
-
-
 </menu>

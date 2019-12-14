@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.iasahub.sagas_life.databinding.ActivityTimelapsefeedBinding
 import kotlinx.android.synthetic.main.activity_timelapsefeed.*
 
@@ -23,9 +24,9 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
         timelapse_feed_list = ArrayList()
 
         addTimelapse()
-        TimeRecycler.layoutManager = LinearLayoutManager(this)
-        TimeRecycler.addItemDecoration((DividerItemDecoration(this, 1)))
-        TimeRecycler.adapter = TimelapseAdapter(timelapse_feed_list, this)
+        massages_slider.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        massages_slider.addItemDecoration((DividerItemDecoration(this, 1)))
+        massages_slider.adapter = TimelapseAdapter(timelapse_feed_list, this)
 
 
         setSupportActionBar(toolbar)
