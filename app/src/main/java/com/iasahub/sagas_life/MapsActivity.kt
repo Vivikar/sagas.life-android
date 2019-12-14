@@ -21,6 +21,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.iasahub.sagas_life.databinding.ActivityMapsBinding
 import kotlinx.android.synthetic.main.activity_timelapsefeed.*
 
+
+
+
+
+
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
     GoogleMap.OnMarkerClickListener {
     override fun onMarkerClick(p0: Marker?) = false
@@ -31,6 +37,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
+    private val myMarker: Marker? = null
 
 
     companion object {
@@ -105,13 +112,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
         //map.setOnMarkerClickListener(this)
 
         map = googleMap
-        val myPlace = LatLng(50.44, 30.46)  // this is New York
+        val myPlace = LatLng(50.44, 30.46)  // this is IASA
         map.addMarker(MarkerOptions().position(myPlace).title("Lyceum near KPI"))
+
+
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(myPlace, 12.0f))
 
         map.uiSettings.isZoomControlsEnabled = true
-        map.setOnMarkerClickListener(this)
+        map.setOnMarkerClickListener { marker ->
+            if (marker.isInfoWindowShown) {
+                //Toast.makeText(this, "hi", Toast.LENGTH_LONG).show()
+            } else {
+                marker.showInfoWindow()
+                val intent = Intent(this, TimelapsePageActivity::class.java)
+                intent.putExtra("TNAME", "Timelapse from maps")
+                intent.putExtra("TDESCR", "#map #timelapse")
+                intent.putExtra("TUSERPIC", R.drawable.user_icon.toString())
+                intent.putExtra("TIMAGE", R.drawable.timelapse_1.toString())
+                startActivity(intent)
+
+            }
+            true
+        }
+
+
 
         setUpMap()
+
+
     }
+
 }

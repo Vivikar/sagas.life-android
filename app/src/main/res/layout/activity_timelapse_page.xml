@@ -15,6 +15,14 @@
         android:layout_height="match_parent">
 
 
+        <com.iasahub.sagas_life.Crossfader
+            android:id="@+id/cross_fader"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            />
+
         <ImageView
             android:id="@+id/timelapse_pic"
             android:layout_width="wrap_content"
@@ -22,7 +30,6 @@
             android:scaleType="centerCrop"
 
             app:srcCompat="@drawable/timelapse_3" />
-
         <TextView
             android:id="@+id/tname"
             android:layout_width="wrap_content"
@@ -169,6 +176,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             app:srcCompat="@drawable/ic_add_circle_outline_black_40dp"/>
+
 
     </RelativeLayout>
 
