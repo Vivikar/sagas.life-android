@@ -7,7 +7,7 @@
         android:id="@+id/timelapse_co_author"
         android:title="Co-author`s profile"/>
     <item
-        android:id="@+id/report"
+        android:id="@+id/report_about_slide"
         android:title="Report about slide"/>
     <item
         android:id="@+id/edit_timelaps"

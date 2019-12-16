@@ -1,9 +1,18 @@
 package com.iasahub.sagas_life
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.iasahub.sagas_life.databinding.ActivityTimelapsefeedBinding
+import android.app.Activity
+import kotlinx.android.synthetic.main.activity_timelapse_page.*
 import kotlinx.android.synthetic.main.layout_item_view.view.*
 
 class TimelapseAdapter(var items : ArrayList<Timelapses>, var clickListener: OnTimelapseItemClickListener) : RecyclerView.Adapter<TimelapseViewHolder>(){
@@ -24,15 +33,21 @@ class TimelapseAdapter(var items : ArrayList<Timelapses>, var clickListener: OnT
         //holder.timelapse_pic.setImageResource(items.get(position).tpic)
 
         holder.initialize(items.get(position), clickListener)
+        holder.LikeClicking()
     }
 }
 
 
 class TimelapseViewHolder(itemView:View) :RecyclerView.ViewHolder(itemView){
+    var flag = false
+
     var tName = itemView.tname
     var tDescription = itemView.tdescription
     var user_pic = itemView.user_pic
     var timelapse_pic = itemView.timelapse_pic
+    var likes = itemView.like_num
+    var shares = itemView.share_num
+    var comms = itemView.comm_num
 
 
     fun initialize(item: Timelapses, action:OnTimelapseItemClickListener){
@@ -40,15 +55,38 @@ class TimelapseViewHolder(itemView:View) :RecyclerView.ViewHolder(itemView){
         tDescription.text = item.description
         user_pic.setImageResource(item.logo)
         timelapse_pic.setImageResource(item.tpic)
+        likes.text = item.likes.toString()
+        shares.text = item.shares.toString()
+        comms.text = item.comm.toString()
 
         itemView.setOnClickListener{
             action.onItemClick(item, adapterPosition)
+        }
+        itemView.findViewById<ImageButton>(R.id.comm_btn).setOnClickListener{
+            action.onCommButtonClick(item, adapterPosition)
+        }
+    }
+
+    fun LikeClicking(){
+        //gRPC get liked or not
+        //flag = ....
+        itemView.findViewById<ImageButton>(R.id.TL_likes).setOnClickListener() {
+            if (!flag) {
+                likes.text = (likes.text.toString().toInt() + 1).toString()
+                flag = true
+                // gRPC add like
+            } else {
+                likes.text = (likes.text.toString().toInt() - 1).toString()
+                flag = false
+                //gRPC remove like
+            }
         }
     }
 }
 
 interface OnTimelapseItemClickListener {
-    fun  onItemClick(item: Timelapses, position: Int)
+    fun onItemClick(item: Timelapses, position: Int)
+    fun onCommButtonClick(item: Timelapses, position: Int)
 }
 
 

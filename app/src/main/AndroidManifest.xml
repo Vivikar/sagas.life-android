@@ -80,7 +80,12 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".CommentsPageActivity"
+        <activity
+            android:name=".CommentsPageActivity"
+            android:theme="@style/AppTheme.Launcher">
+        </activity>
+        <activity
+            android:name=".CreateTimelapseActivity"
             android:theme="@style/AppTheme.Launcher">
         </activity>
     </application>
