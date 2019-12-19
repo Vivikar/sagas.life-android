@@ -4,12 +4,12 @@
         android:id="@+id/search"
         android:icon="@drawable/icons_ic_navibar_search"
         app:showAsAction="ifRoom"
-        android:title="Search">
+        android:title="@string/search_name">
     </item>
     <item
         android:id="@+id/feed"
         android:icon="@drawable/icons_ic_navibar_feed"
         app:showAsAction="ifRoom|withText"
-        android:title="Feed">
+        android:title="@string/maps_name">
     </item>
 </menu>

@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top" />
 
         <ImageView
-            android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/logo_descr"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -45,7 +45,6 @@
 
         <TextView
             style="@style/TextStyle2"
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Life"

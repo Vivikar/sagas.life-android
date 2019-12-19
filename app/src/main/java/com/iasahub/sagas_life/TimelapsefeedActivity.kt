@@ -1,9 +1,12 @@
 package com.iasahub.sagas_life
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -30,52 +33,105 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
 
 
         setSupportActionBar(toolbar)
+
+        if (Intent.ACTION_SEARCH == intent.action) {
+            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
+                Toast.makeText(this, query, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
 
 
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu.findItem(R.id.search).actionView as SearchView).apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
 
+        }
 
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.map -> {
-            // do stuff
-            //Toast.makeText(this, item.itemId, Toast.LENGTH_LONG).show()
             startActivity(Intent(this, MapsActivity::class.java))
             true
         }
         R.id.search -> {
-            Toast.makeText(this,"Search", Toast.LENGTH_LONG).show()
             true
         }
 
         else -> super.onOptionsItemSelected(item)
-
     }
 
-    fun addTimelapse(){
-        timelapse_feed_list.add(Timelapses("Somewhere in the Universe", "#universe #sky #nice", R.drawable.user_icon, R.drawable.timelapse_1))
-        timelapse_feed_list.add(Timelapses("Somewhere in the Universe", "#universe #sky #nice", R.drawable.user_icon, R.drawable.timelapse_2))
-        timelapse_feed_list.add(Timelapses("Somewhere in the Universe", "#universe #sky #nice", R.drawable.user_icon, R.drawable.timelapse_3))
-        timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_4))
-        timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_5))
-        timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_6))
-        timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_7))
+    fun addTimelapse() {
+        timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in the Universe",
+                "#universe #sky #nice",
+                R.drawable.user_icon,
+                R.drawable.timelapse_1
+            )
+        )
+        timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in the Universe",
+                "#universe #sky #nice",
+                R.drawable.user_icon,
+                R.drawable.timelapse_2
+            )
+        )
+        timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in the Universe",
+                "#universe #sky #nice",
+                R.drawable.user_icon,
+                R.drawable.timelapse_3
+            )
+        )
+        timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_4
+            )
+        )
+        timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_5
+            )
+        )
+        timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_6
+            )
+        )
+        timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_7
+            )
+        )
     }
 
     override fun onItemClick(item: Timelapses, position: Int) {
-        //Toast.makeText(this, item.name, Toast.LENGTH_LONG).show()
         val intent = Intent(this, TimelapsePageActivity::class.java)
         intent.putExtra("TNAME", item.name)
         intent.putExtra("TDESCR", item.description)
         intent.putExtra("TUSERPIC", item.logo.toString())
-        intent.putExtra("TIMAGE", item.tpic.toString())
+        intent.putExtra("TIMAGE", item.timelapsePic.toString())
         startActivity(intent)
-        //intent.putExtra("TUSERNAME", item.user_name)
     }
 }
 

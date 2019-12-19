@@ -3,6 +3,7 @@ package com.iasahub.sagas_life
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.iasahub.sagas_life.databinding.ActivityTimelapsePageBinding
 import kotlinx.android.synthetic.main.activity_timelapse_page.*
 
@@ -17,37 +18,24 @@ class TimelapsePageActivity : AppCompatActivity() {
         tname.text = getIntent().getStringExtra("TNAME")
         tdescription.text = getIntent().getStringExtra("TDESCR")
 
-
-
-
         play_timelapse.setOnClickListener {
-            cross_fader.crossfade("https://www.cbc.ca/news2/interactives/before-after/ukraine-independence-square/images/ind-square-before.jpg") //blue_kitsya
+            cross_fader.crossfade(R.drawable.time_1)
             cross_fader.showPrevious()
-            cross_fader.crossfade("https://media.gettyimages.com/photos/independence-square-kiev-ukraine-picture-id480423837") //white_kitsya
-            //cross_fader.showNext()
-            //cross_fader.crossfade("https://www.interfax.ru/ftproot/textphotos/2019/05/17/700gc.jpg")  //rose_kitsya
+            cross_fader.crossfade(R.drawable.time_2)
 
         }
 
+        Glide.with(applicationContext)
+            .load(intent.getStringExtra("TIMAGE").toInt())
+            .into(timelapse_pic)
 
-
-
-        timelapse_pic.setImageResource(getIntent().getStringExtra("TIMAGE").toInt())
-
-//        Glide.with(this)
-//            .load(getIntent().getStringExtra("TIMAGE").toInt())
-//            .into(timelapse_pic)
-
-
-
-
-        user_pic.setImageResource(getIntent().getStringExtra("TUSERPIC").toInt())
+        Glide.with(applicationContext)
+            .load(R.drawable.user_icon)
+            .into(user_pic)
 
         go_back.setOnClickListener {
             onBackPressed()
         }
-
-        //tname.text = getIntent().getStringExtra("TNAME")
 
     }
 

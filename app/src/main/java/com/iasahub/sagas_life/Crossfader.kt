@@ -1,4 +1,5 @@
 package com.iasahub.sagas_life
+
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
@@ -6,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.ViewSwitcher
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -27,27 +27,38 @@ class Crossfader constructor(
         addImageViews()
     }
 
-    fun crossfade(imageUrl: String?) {
+    fun crossfade(imageUrl: Int) {
 
         (nextView as? ImageView)?.let { nextImageView ->
             loadImage(nextImageView, imageUrl, SwitchImageWhenReady(nextImageView))
         }
     }
 
-    private inner class SwitchImageWhenReady(private val imageView: ImageView) : RequestListener<Drawable> {
+    private inner class SwitchImageWhenReady(private val imageView: ImageView) :
+        RequestListener<Drawable> {
 
         init {
             switchAction?.let { imageView.removeCallbacks(it) }
         }
 
-        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+        override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<Drawable>?,
+            isFirstResource: Boolean
+        ): Boolean {
             return false
         }
 
-        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+        override fun onResourceReady(
+            resource: Drawable?,
+            model: Any?,
+            target: Target<Drawable>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
 
             switchAction = Runnable {
-                //showPrevious()
                 showNext()
             }
 
@@ -57,10 +68,15 @@ class Crossfader constructor(
         }
     }
 
-    private fun loadImage(imageView: ImageView, imageUrl: String?, listener: RequestListener<Drawable>) {
+    private fun loadImage(
+        imageView: ImageView,
+        imageUrl: Int,
+        listener: RequestListener<Drawable>
+    ) {
         Glide.with(imageView)
             .load(imageUrl)
             .listener(listener)
+            .centerCrop()
             .into(imageView)
     }
 
@@ -72,17 +88,12 @@ class Crossfader constructor(
     }
 
     private fun addImageViews() {
-        var imview1: ImageView = ImageView(context)
-        imview1.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
-        var imview2: ImageView = ImageView(context)
-        imview2.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
-        addView(imview1)
-        addView(imview2)
+        addView(ImageView(context))
+        addView(ImageView(context))
     }
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         super.addView(child, index, params)
-
         child?.visibility =
             if (childCount == 1) {
                 View.VISIBLE

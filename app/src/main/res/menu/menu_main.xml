@@ -1,15 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/search"
+    <item android:id="@+id/search"
+        android:title="@string/search_title"
         android:icon="@drawable/icons_ic_navibar_search"
-        app:showAsAction="ifRoom"
-        android:title="Search">
-    </item>
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.widget.SearchView" />
     <item
         android:id="@+id/map"
         android:icon="@drawable/icons_ic_navibar_map"
         app:showAsAction="ifRoom|withText"
-        android:title="Map">
-    </item>
+        android:title="@string/app_name" />
 </menu>
