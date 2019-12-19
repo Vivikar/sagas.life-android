@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.ViewSwitcher
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -45,7 +46,10 @@ class Crossfader constructor(
 
         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
-            switchAction = Runnable { showNext() }
+            switchAction = Runnable {
+                //showPrevious()
+                showNext()
+            }
 
             imageView.post(switchAction)
 
@@ -58,19 +62,22 @@ class Crossfader constructor(
             .load(imageUrl)
             .listener(listener)
             .into(imageView)
-
     }
 
     private fun setTransition() {
         inAnimation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
-        inAnimation.duration = 3222
+        inAnimation.duration = 3000
         outAnimation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
-        outAnimation.duration = 3222
+        outAnimation.duration = 3000
     }
 
     private fun addImageViews() {
-        addView(ImageView(context))
-        addView(ImageView(context))
+        var imview1: ImageView = ImageView(context)
+        imview1.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        var imview2: ImageView = ImageView(context)
+        imview2.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        addView(imview1)
+        addView(imview2)
     }
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
