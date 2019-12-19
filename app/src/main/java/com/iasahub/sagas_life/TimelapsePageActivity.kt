@@ -12,11 +12,10 @@ class TimelapsePageActivity : AppCompatActivity() {
     lateinit var binding: ActivityTimelapsePageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_timelapse_page)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_timelapse_page)
 
-        tname.text = getIntent().getStringExtra("TNAME")
-        tdescription.text = getIntent().getStringExtra("TDESCR")
+        tname.text = intent.getStringExtra("TNAME")
+        tdescription.text = intent.getStringExtra("TDESCR")
 
         play_timelapse.setOnClickListener {
             cross_fader.crossfade(R.drawable.time_1)
