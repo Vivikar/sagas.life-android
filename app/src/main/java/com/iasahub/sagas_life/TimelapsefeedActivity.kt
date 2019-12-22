@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iasahub.sagas_life.databinding.ActivityTimelapsefeedBinding
 import kotlinx.android.synthetic.main.activity_timelapsefeed.*
+import kotlinx.android.synthetic.main.activity_timelapsefeed.TimeRecycler as massages_slider
 
 class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener {
 
@@ -33,13 +34,8 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_timelapsefeed)
         if(timelapseclass.timelapse_feed_list.size == 0){
-            //timelapseclass.timelapse_feed_list = ArrayList()
             addTimelapse()
         }
-        
-        //TimeRecycler.layoutManager = LinearLayoutManager(this)
-        //TimeRecycler.addItemDecoration((DividerItemDecoration(this, 1)))
-        //TimeRecycler.adapter = TimelapseAdapter(timelapse_feed_list, this)
 
         massages_slider.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         massages_slider.addItemDecoration((DividerItemDecoration(this, 1)))
@@ -132,13 +128,13 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
         intent.putExtra("TLIKES", item.likes)
         intent.putExtra("TSHARES", item.shares)
         intent.putExtra("TCOMM", item.comm)
-        intent.putExtra("TIMAGE", item.timelapsePic.toString())
+        intent.putExtra("TIMAGE", item.tpic.toString())
         startActivity(intent)
     }
 
     override fun onCommButtonClick(item: Timelapses, position: Int){
         val intent = Intent(this, CommentsPageActivity::class.java)
-        intent.putExtra("TIMAGE", item.timelapsePic.toString())
+        intent.putExtra("TIMAGE", item.tpic.toString())
         intent.putExtra("TNAME", item.name)
         intent.putExtra("TDESCR", item.description)
         startActivity(intent)
