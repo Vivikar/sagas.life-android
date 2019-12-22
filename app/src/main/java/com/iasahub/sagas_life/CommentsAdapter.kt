@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.layout_comments_item_view.view.*
 
 class CommentsAdapter(var items: ArrayList<Massages>, var clickListener: OnSettingsClickListener) :
     RecyclerView.Adapter<CommentsViewHolder>() {
-
     override fun getItemCount(): Int {
         return items.size
     }
@@ -31,9 +30,8 @@ class CommentsAdapter(var items: ArrayList<Massages>, var clickListener: OnSetti
 
     override fun onBindViewHolder(holder: CommentsViewHolder, position: Int) {
         holder.initialize(items.get(position), clickListener)
-        holder.LikeClicking(items.get(position))
+        holder.likeClicking(items.get(position))
     }
-
 }
 
 class CommentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -48,16 +46,12 @@ class CommentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         time.text = item.time
         userPic.setImageResource(item.Logo)
         commentText.text = item.text
-        if (item.liked) {
-            like.setImageResource(R.drawable.icons_ic_like_filled)
-            ImageViewCompat.setImageTintList(
-                like,
-                ColorStateList.valueOf(Color.parseColor("#d15247"))
-            )
-        }
 
+        if (item.liked) {
+            showLiked()
+        }
         itemView.findViewById<ImageButton>(R.id.comments_settings_btn).setOnClickListener {
-            action.SettingsClicking(
+            action.settingsClicking(
                 item,
                 adapterPosition,
                 itemView.findViewById<ImageButton>(R.id.comments_settings_btn)
@@ -65,7 +59,15 @@ class CommentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
-    fun LikeClicking(item: Massages) {
+    fun showLiked() {
+        like.setImageResource(R.drawable.icons_ic_like_filled)
+        ImageViewCompat.setImageTintList(
+            like,
+            ColorStateList.valueOf(Color.parseColor("#d15247"))
+        )
+    }
+
+    fun likeClicking(item: Massages) {
         itemView.findViewById<ImageButton>(R.id.like_button).setOnClickListener {
             if (item.liked) {
                 like.setImageResource(R.drawable.icons_ic_like_empty)
@@ -89,5 +91,5 @@ class CommentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 }
 
 interface OnSettingsClickListener {
-    fun SettingsClicking(item: Massages, position: Int, btn: ImageButton)
+    fun settingsClicking(item: Massages, position: Int, btn: ImageButton)
 }

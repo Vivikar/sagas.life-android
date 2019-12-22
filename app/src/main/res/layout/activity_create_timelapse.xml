@@ -115,7 +115,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="18dp"
                     android:layout_marginEnd="32dp"
                     android:background="@drawable/rounded_write_container" />
 
@@ -230,7 +230,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="88dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="28dp"
                     android:layout_marginEnd="88dp"
                     android:background="@drawable/create_timelapse_btn"
                     android:text="CREATE TIMELAPSE" />

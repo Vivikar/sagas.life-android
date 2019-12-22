@@ -1,18 +1,10 @@
 package com.iasahub.sagas_life
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.iasahub.sagas_life.databinding.ActivityTimelapsefeedBinding
-import android.app.Activity
-import kotlinx.android.synthetic.main.activity_timelapse_page.*
 import kotlinx.android.synthetic.main.layout_item_view.view.*
 
 class TimelapseAdapter(
@@ -37,11 +29,11 @@ class TimelapseAdapter(
 
     override fun onBindViewHolder(holder: TimelapseViewHolder, position: Int) {
         holder.initialize(items.get(position), clickListener)
-        holder.LikeClicking()
+        holder.likeClicking()
     }
 }
 
-class TimelapseViewHolder(itemView:View) :RecyclerView.ViewHolder(itemView){
+class TimelapseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var flag = false
 
 
@@ -67,12 +59,12 @@ class TimelapseViewHolder(itemView:View) :RecyclerView.ViewHolder(itemView){
         itemView.setOnClickListener {
             action.onItemClick(item, adapterPosition)
         }
-        itemView.findViewById<ImageButton>(R.id.comm_btn).setOnClickListener{
+        itemView.findViewById<ImageButton>(R.id.comm_btn).setOnClickListener {
             action.onCommButtonClick(item, adapterPosition)
         }
     }
 
-    fun LikeClicking(){
+    fun likeClicking() {
         //gRPC get liked or not
         //flag = ....
         itemView.findViewById<ImageButton>(R.id.TL_likes).setOnClickListener() {

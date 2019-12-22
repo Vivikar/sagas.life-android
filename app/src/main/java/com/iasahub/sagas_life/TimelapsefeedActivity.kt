@@ -9,11 +9,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.PopupMenu
-import android.widget.Toast
-import android.widget.Toolbar
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -26,35 +23,15 @@ import kotlinx.android.synthetic.main.activity_timelapsefeed.TimeRecycler as mas
 class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener {
 
     lateinit var binding: ActivityTimelapsefeedBinding
-    //lateinit var timelapse_feed_list: ArrayList<Timelapses>
-    val camera_request_code = 0
+    val cameraRequestCode = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_timelapsefeed)
-        if(timelapseclass.timelapse_feed_list.size == 0){
-            addTimelapse()
-        }
-
-        massages_slider.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
-        massages_slider.addItemDecoration((DividerItemDecoration(this, 1)))
-        massages_slider.adapter = TimelapseAdapter(timelapseclass.timelapse_feed_list, this)
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_timelapsefeed)
+        loadData()
         setSupportActionBar(toolbar)
-
-        bottom_navigation.setOnNavigationItemSelectedListener(){
-            when (it.itemId){
-                R.id.add_pic -> {
-                val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (callCameraIntent.resolveActivity(packageManager) != null){
-                    startActivityForResult(callCameraIntent, camera_request_code)
-                }
-                true
-            }
-                else -> false
-            }
-        }
+        bottomMenuCameraColling()
 
         if (Intent.ACTION_SEARCH == intent.action) {
             intent.getStringExtra(SearchManager.QUERY)?.also { query ->
@@ -63,24 +40,47 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
         }
     }
 
+    fun loadData() {
+        if (timelapseclass.timelapse_feed_list.size == 0) {
+            addTimelapse()
+        }
+        massages_slider.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        massages_slider.addItemDecoration((DividerItemDecoration(this, 1)))
+        massages_slider.adapter = TimelapseAdapter(timelapseclass.timelapse_feed_list, this)
+    }
+
+    fun bottomMenuCameraColling() {
+        bottom_navigation.setOnNavigationItemSelectedListener() {
+            when (it.itemId) {
+                R.id.add_pic -> {
+                    val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    if (callCameraIntent.resolveActivity(packageManager) != null) {
+                        startActivityForResult(callCameraIntent, cameraRequestCode)
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        when(requestCode) {
-            camera_request_code -> {
-                if(resultCode == Activity.RESULT_OK && data != null){
-                    val tmp =  data.extras
+        when (requestCode) {
+            cameraRequestCode -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val tmp = data.extras
                     val intent = Intent(this, CreateTimelapseActivity::class.java)
-                    if(tmp != null){
-                        intent.putExtra("PHOTO", tmp.get("data")as Bitmap)
+                    if (tmp != null) {
+                        intent.putExtra("PHOTO", tmp.get("data") as Bitmap)
                         startActivity(intent)
                     }
 
                 }
             }
             else -> {
-                Toast.makeText(this,"Urecognize request code", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Urecognize request code", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -109,14 +109,84 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
         else -> super.onOptionsItemSelected(item)
     }
 
-    fun addTimelapse(){
-        timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in the Universe", "#universe #sky #nice", R.drawable.user_icon, R.drawable.timelapse_1, 14, 3, 5))
-        timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in the Universe", "#universe #sky #nice", R.drawable.user_icon, R.drawable.timelapse_2, 11, 0, 4))
-        timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in the Universe", "#universe #sky #nice", R.drawable.user_icon, R.drawable.timelapse_3, 16, 2 ,0))
-        timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_4, 2,3,4))
-        timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_5, 4, 5,6))
-        timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_6, 1,1,0))
-        timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_6, 7 ,6 ,5))
+    fun addTimelapse() {
+        timelapseclass.timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in the Universe",
+                "#universe #sky #nice",
+                R.drawable.user_icon,
+                R.drawable.timelapse_1,
+                14,
+                3,
+                5
+            )
+        )
+        timelapseclass.timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in the Universe",
+                "#universe #sky #nice",
+                R.drawable.user_icon,
+                R.drawable.timelapse_2,
+                11,
+                0,
+                4
+            )
+        )
+        timelapseclass.timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in the Universe",
+                "#universe #sky #nice",
+                R.drawable.user_icon,
+                R.drawable.timelapse_3,
+                16,
+                2,
+                0
+            )
+        )
+        timelapseclass.timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_4,
+                2,
+                3,
+                4
+            )
+        )
+        timelapseclass.timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_5,
+                4,
+                5,
+                6
+            )
+        )
+        timelapseclass.timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_6,
+                1,
+                1,
+                0
+            )
+        )
+        timelapseclass.timelapse_feed_list.add(
+            Timelapses(
+                "Somewhere in Alps",
+                "#apls #lake #landscape",
+                R.drawable.user_icon,
+                R.drawable.timelapse_6,
+                7,
+                6,
+                5
+            )
+        )
 
     }
 
@@ -132,7 +202,7 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
         startActivity(intent)
     }
 
-    override fun onCommButtonClick(item: Timelapses, position: Int){
+    override fun onCommButtonClick(item: Timelapses, position: Int) {
         val intent = Intent(this, CommentsPageActivity::class.java)
         intent.putExtra("TIMAGE", item.tpic.toString())
         intent.putExtra("TNAME", item.name)

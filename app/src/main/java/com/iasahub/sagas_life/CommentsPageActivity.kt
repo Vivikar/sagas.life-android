@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageButton
 import android.widget.PopupMenu
@@ -23,25 +24,33 @@ class CommentsPageActivity : AppCompatActivity(), OnSettingsClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_comments_page)
+        loadData()
+        addAdapter()
+        setSupportActionBar(toolbar)
+        closeComments()
+        setNumOfComm()
+        sendMassagesClicking()
+    }
+
+    fun loadData() {
         if (massageclass.massage_feed_list.size == 0) {
             addComments()
         }
-
         timelapse.setImageResource(getIntent().getStringExtra("TIMAGE").toInt())
         tname.text = getIntent().getStringExtra("TNAME")
         tdescription.text = getIntent().getStringExtra("TDESCR")
+    }
 
+    fun addAdapter() {
         massages_slider.layoutManager = LinearLayoutManager(this) //as RecyclerView.LayoutManager?
         massages_slider.addItemDecoration((DividerItemDecoration(this, 1)))
         massages_slider.adapter = CommentsAdapter(massageclass.massage_feed_list, this)
+    }
 
-        setSupportActionBar(toolbar)
-
+    fun closeComments() {
         close_comments_btn.setOnClickListener {
             onBackPressed()
         }
-        setNumOfComm()
-        SendMassagesClicking()
     }
 
     fun setNumOfComm() {
@@ -50,7 +59,7 @@ class CommentsPageActivity : AppCompatActivity(), OnSettingsClickListener {
         comments_num.text = num.toString() + " comments"
     }
 
-    fun SendMassagesClicking() {
+    fun sendMassagesClicking() {
         send_msg_btn.setOnClickListener {
             val text_res = massage_text_inputer.text.toString()
             //gRPC getUser getUserIcon
@@ -75,6 +84,7 @@ class CommentsPageActivity : AppCompatActivity(), OnSettingsClickListener {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.map -> {
             startActivity(Intent(this, MapsActivity::class.java))
@@ -86,6 +96,15 @@ class CommentsPageActivity : AppCompatActivity(), OnSettingsClickListener {
 
         else -> super.onOptionsItemSelected(item)
     }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (currentFocus != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
     fun addComments() {
         massageclass.massage_feed_list.add(
             Massages(
@@ -134,7 +153,7 @@ class CommentsPageActivity : AppCompatActivity(), OnSettingsClickListener {
         )
     }
 
-    override fun SettingsClicking(item: Massages, position: Int, btn: ImageButton) {
+    override fun settingsClicking(item: Massages, position: Int, btn: ImageButton) {
         val popupMenu = PopupMenu(this, btn)
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
