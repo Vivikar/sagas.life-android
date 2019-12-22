@@ -4,10 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import java.util.ArrayList
 
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        timelapseclass.timelapse_feed_list = ArrayList()
+        massageclass.massage_feed_list = ArrayList()
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 

@@ -74,30 +74,78 @@
                 app:srcCompat="@drawable/icons_ic_more_vert"
                 android:background="@null"
                 />
+
             <ImageButton
-                android:layout_marginTop="312dp"
-                android:layout_marginLeft="266dp"
+                android:id="@+id/TL_likes"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_above="@+id/like_num"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toStartOf="@+id/shar_btn"
+                android:background="@null"
+                app:srcCompat="@drawable/icons_ic_btn_slidefeed_favorites" />
+
+            <ImageButton
+                android:id="@+id/shar_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/icons_ic_btn_slidefeed_favorites"
+                android:layout_above="@+id/share_num"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toStartOf="@+id/comm_btn"
                 android:background="@null"
-                />
+                app:srcCompat="@drawable/icons_ic_btn_slidefeed_share" />
+
             <ImageButton
-                android:layout_marginTop="312dp"
-                android:layout_marginLeft="313dp"
+                android:id="@+id/comm_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/icons_ic_btn_slidefeed_share"
+                android:layout_above="@+id/comm_num"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="2dp"
                 android:background="@null"
-                />
-            <ImageButton
-                android:layout_marginTop="312dp"
-                android:layout_marginLeft="352dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/icons_ic_btn_slidefeed_comments"
-                android:background="@null"
-                />
+                app:srcCompat="@drawable/icons_ic_btn_slidefeed_comments" />
+
+            <TextView
+                android:id="@+id/comm_num"
+                style="@style/TextStyle17"
+                android:layout_width="32dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="4dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/share_num"
+                style="@style/TextStyle17"
+                android:layout_width="32dp"
+                android:layout_height="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_toStartOf="@+id/comm_num"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/like_num"
+                style="@style/TextStyle17"
+                android:layout_width="32dp"
+                android:layout_height="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_toStartOf="@+id/share_num"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="12sp" />
         </RelativeLayout>
 
 

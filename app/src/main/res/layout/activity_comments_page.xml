@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            tools:context=".TimelapsefeedActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:translationZ="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:titleTextColor="@android:color/white"></androidx.appcompat.widget.Toolbar>
+
+            <ImageView
+
+                android:id="@+id/timelapse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+
+                android:translationZ="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/timelapse_3" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="75dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+                    tools:text="Somewhere in Alp" />
+
+                <TextView
+                    android:id="@+id/tdescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="105dp"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.25"
+                    android:lineSpacingExtra="6sp"
+                    android:shadowColor="#59000000"
+                    android:shadowRadius="8"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="#apls #lake #landscape" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/add_comments_bar"
+                    android:layout_below="@+id/comments_bar_head"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/massages_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/comments_bar_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="145dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/comments_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="8dp"
+                            android:text="12 comments" />
+
+                        <ImageButton
+                            android:id="@+id/close_comments_btn"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="8dp"
+                            android:backgroundTint="#00FFFFFF"
+                            app:srcCompat="@drawable/icons_ic_close" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/add_comments_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/massage_text_inputer"
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:layout_alignStart="@+id/input_comment_line"
+                            android:layout_alignEnd="@+id/input_comment_line"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:hint="Add comment"
+                            android:textAllCaps="false"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/input_comment_line"
+                            android:layout_width="24dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_toStartOf="@+id/send_msg_btn" />
+
+                        <ImageButton
+                            style="@style/sending_btn"
+                            android:id="@+id/send_msg_btn"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:backgroundTint="#00FFFFFF"
+                            app:srcCompat="@drawable/icons_ic_send" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>
