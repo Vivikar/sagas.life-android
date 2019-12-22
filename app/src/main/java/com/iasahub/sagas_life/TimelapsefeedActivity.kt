@@ -1,6 +1,8 @@
 package com.iasahub.sagas_life
 
 import android.app.Activity
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -11,6 +13,7 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
 import android.widget.Toolbar
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -33,6 +36,10 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
             //timelapseclass.timelapse_feed_list = ArrayList()
             addTimelapse()
         }
+        
+        //TimeRecycler.layoutManager = LinearLayoutManager(this)
+        //TimeRecycler.addItemDecoration((DividerItemDecoration(this, 1)))
+        //TimeRecycler.adapter = TimelapseAdapter(timelapse_feed_list, this)
 
         massages_slider.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         massages_slider.addItemDecoration((DividerItemDecoration(this, 1)))
@@ -53,7 +60,11 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
             }
         }
 
-        //setContentView(R.layout.activity_timelapsefeed)
+        if (Intent.ACTION_SEARCH == intent.action) {
+            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
+                Toast.makeText(this, query, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
 
@@ -79,26 +90,26 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
-        //menuInflater.inflate(R.menu.bottom_navigation_menu, menu)
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu.findItem(R.id.search).actionView as SearchView).apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+
+        }
+
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.map -> {
-            // do stuff
-            //Toast.makeText(this, item.itemId, Toast.LENGTH_LONG).show()
-            //startActivity(Intent(this, MapsActivity::class.java))
+            startActivity(Intent(this, MapsActivity::class.java))
             true
         }
         R.id.search -> {
-            //startActivity(Intent(this, SplashActivity::class.java))
             true
         }
-        R.id.add_pic -> {
-            //startActivity(Intent(this, SplashActivity::class.java))
-            true
-        }
+
         else -> super.onOptionsItemSelected(item)
     }
 
@@ -110,31 +121,29 @@ class TimelapsefeedActivity : AppCompatActivity(), OnTimelapseItemClickListener 
         timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_5, 4, 5,6))
         timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_6, 1,1,0))
         timelapseclass.timelapse_feed_list.add(Timelapses("Somewhere in Alps", "#apls #lake #landscape", R.drawable.user_icon, R.drawable.timelapse_6, 7 ,6 ,5))
+
     }
 
     override fun onItemClick(item: Timelapses, position: Int) {
-        //Toast.makeText(this, item.name, Toast.LENGTH_LONG).show()
         val intent = Intent(this, TimelapsePageActivity::class.java)
         intent.putExtra("TNAME", item.name)
         intent.putExtra("TDESCR", item.description)
         intent.putExtra("TUSERPIC", item.logo.toString())
-        intent.putExtra("TIMAGE", item.tpic.toString())
         intent.putExtra("TLIKES", item.likes)
         intent.putExtra("TSHARES", item.shares)
         intent.putExtra("TCOMM", item.comm)
+        intent.putExtra("TIMAGE", item.timelapsePic.toString())
         startActivity(intent)
-        //intent.putExtra("TUSERNAME", item.user_name)
     }
 
     override fun onCommButtonClick(item: Timelapses, position: Int){
         val intent = Intent(this, CommentsPageActivity::class.java)
-        intent.putExtra("TIMAGE", item.tpic.toString())
+        intent.putExtra("TIMAGE", item.timelapsePic.toString())
         intent.putExtra("TNAME", item.name)
         intent.putExtra("TDESCR", item.description)
         startActivity(intent)
     }
 }
-
 
 
 

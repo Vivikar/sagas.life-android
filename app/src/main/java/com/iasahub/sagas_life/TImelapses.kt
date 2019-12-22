@@ -13,4 +13,5 @@ public class timelapseclass(){
 }
 public class massageclass(){
     public companion object{ lateinit var massage_feed_list: ArrayList<Massages>}
+
 }

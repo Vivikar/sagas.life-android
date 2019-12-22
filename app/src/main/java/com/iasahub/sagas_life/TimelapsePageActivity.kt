@@ -8,9 +8,11 @@ import android.provider.MediaStore
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.iasahub.sagas_life.databinding.ActivityTimelapsePageBinding
 import kotlinx.android.synthetic.main.activity_timelapse_page.*
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class TimelapsePageActivity : AppCompatActivity() {
     lateinit var binding: ActivityTimelapsePageBinding
     val camera_request_code = 0
@@ -18,16 +20,29 @@ class TimelapsePageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_timelapse_page)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_timelapse_page)
 
-        tname.text = getIntent().getStringExtra("TNAME")
-        tdescription.text = getIntent().getStringExtra("TDESCR")
-        timelapse_pic.setImageResource(getIntent().getStringExtra("TIMAGE").toInt())
-        user_pic.setImageResource(getIntent().getStringExtra("TUSERPIC").toInt())
         like_num.text = getIntent().getIntExtra("TLIKES", 0).toString()
         share_num.text = getIntent().getIntExtra("TSHARES", 0).toString()
         comm_num.text = getIntent().getIntExtra("TCOMMS", 0).toString()
+
+        tname.text = intent.getStringExtra("TNAME")
+        tdescription.text = intent.getStringExtra("TDESCR")
+
+        play_timelapse.setOnClickListener {
+            cross_fader.crossfade(R.drawable.time_1)
+            cross_fader.showPrevious()
+            cross_fader.crossfade(R.drawable.time_2)
+
+        }
+
+        Glide.with(applicationContext)
+            .load(intent.getStringExtra("TIMAGE").toInt())
+            .into(timelapse_pic)
+
+        Glide.with(applicationContext)
+            .load(R.drawable.user_icon)
+            .into(user_pic)
 
         go_back.setOnClickListener {
             val intent = Intent(this, TimelapsefeedActivity::class.java)
@@ -105,8 +120,7 @@ class TimelapsePageActivity : AppCompatActivity() {
                 startActivityForResult(callCameraIntent, camera_request_code)
             }
         }
-        //tname.text = getIntent().getStringExtra("TNAME")
-        //timelapse_pic.setImageResource(())
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -125,5 +139,4 @@ class TimelapsePageActivity : AppCompatActivity() {
     }
 
 }
-
 
