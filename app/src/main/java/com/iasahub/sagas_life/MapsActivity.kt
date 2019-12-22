@@ -1,11 +1,15 @@
 package com.iasahub.sagas_life
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.location.Location
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -24,15 +28,12 @@ import kotlinx.android.synthetic.main.activity_timelapsefeed.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
     GoogleMap.OnMarkerClickListener {
+    val cameraRequestCode = 0
     override fun onMarkerClick(p0: Marker?) = false
-
-
     private lateinit var binding: ActivityMapsBinding
-
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
-
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -46,6 +47,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
         mapFragment.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         setSupportActionBar(toolbar)
+        bottomMenuCameraColling()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -109,7 +111,41 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
         }
 
         setUpMap()
+    }
 
+    fun bottomMenuCameraColling() {
+        bottom_navigation.setOnNavigationItemSelectedListener() {
+            when (it.itemId) {
+                R.id.add_pic -> {
+                    val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    if (callCameraIntent.resolveActivity(packageManager) != null) {
+                        startActivityForResult(callCameraIntent, cameraRequestCode)
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            cameraRequestCode -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val tmp = data.extras
+                    val intent = Intent(this, CreateTimelapseActivity::class.java)
+                    if (tmp != null) {
+                        intent.putExtra("PHOTO", tmp.get("data") as Bitmap)
+                        startActivity(intent)
+                    }
+
+                }
+            }
+            else -> {
+                Toast.makeText(this, "Urecognize request code", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 }
