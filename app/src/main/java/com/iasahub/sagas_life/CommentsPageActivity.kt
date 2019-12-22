@@ -1,8 +1,10 @@
 package com.iasahub.sagas_life
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageButton
 import android.widget.PopupMenu
@@ -73,7 +75,17 @@ class CommentsPageActivity : AppCompatActivity(), OnSettingsClickListener {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.map -> {
+            startActivity(Intent(this, MapsActivity::class.java))
+            true
+        }
+        R.id.search -> {
+            true
+        }
 
+        else -> super.onOptionsItemSelected(item)
+    }
     fun addComments() {
         massageclass.massage_feed_list.add(
             Massages(
