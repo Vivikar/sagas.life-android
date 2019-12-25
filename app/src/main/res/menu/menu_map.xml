@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/icons_ic_navibar_search"
+        app:showAsAction="ifRoom"
+        android:title="@string/search_name">
+    </item>
+    <item
+        android:id="@+id/feed"
+        android:icon="@drawable/icons_ic_navibar_feed"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/maps_name">
+    </item>
+</menu>

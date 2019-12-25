@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/timelapse_owner"
+        android:title="Owner`s profile"/>
+    <item
+        android:id="@+id/timelapse_co_author"
+        android:title="Co-author`s profile"/>
+    <item
+        android:id="@+id/report_about_slide"
+        android:title="Report about slide"/>
+    <item
+        android:id="@+id/edit_timelaps"
+        android:title="Edit timelaps"/>
+    <item
+        android:id="@+id/delete_slide"
+        android:title="Delete slide"/>
+</menu>

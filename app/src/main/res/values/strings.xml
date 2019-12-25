@@ -1,23 +1,13 @@
 <resources>
-    <string name="app_name">Sagas.Life</string>
+    <string name="app_name">Sagas</string>
     <string name="facebook_app_id">2168710196763280</string>
     <string name="fb_login_protocol_scheme">fb2168710196763280</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_profile">Profile</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_maps">Sagas</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDfGFWToqRtYjpTI5k3wAKoYnDTpCGw_Rg</string>
+    <string name="search_title">Search for Timelapses</string>
+    <string name="search_hint">Timelapse #hashtag</string>
+    <string name="search_name">Search</string>
+    <string name="maps_name">Feed</string>
+    <string name="logo_descr">Logo</string>
 
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

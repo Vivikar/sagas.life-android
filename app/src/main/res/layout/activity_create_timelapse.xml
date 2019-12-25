@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/top_menu"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/return_to_cam"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@null"
+                    app:srcCompat="@drawable/abc_vector_test" />
+
+                <TextView
+                    android:id="@+id/title_text"
+                    style="@style/TextStyle12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_toEndOf="@+id/return_to_cam"
+                    android:text="Create Timelapse" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/middle_part"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_menu">
+
+                <ImageView
+                    android:id="@+id/photo_img_view"
+                    android:layout_width="172dp"
+                    android:layout_height="292dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="94dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="94dp"
+                    android:layout_marginBottom="0dp"
+                    app:srcCompat="@android:color/holo_blue_light" />
+
+                <ImageView
+                    android:id="@+id/location_view"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/photo_img_view"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="0dp"
+                    app:srcCompat="@drawable/icons_ic_map_single_pin" />
+
+                <TextView
+                    android:id="@+id/location_text"
+                    style="@style/TextStyle13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/photo_img_view"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/location_view"
+                    android:text="Location" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottom_part"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/middle_part"
+                app:layout_constraintVertical_bias="0.0">
+
+                <ImageView
+                    android:id="@+id/title_write_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/rounded_write_container" />
+
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/TextStyle14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/title_write_place"
+                    android:layout_alignTop="@+id/title_write_place"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/title_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tags_write_place"
+                    android:layout_below="@+id/title"
+                    android:layout_alignStart="@id/title_write_place"
+                    android:layout_alignEnd="@id/tags_write_place"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:textColorHint="#deffffff"
+                    app:passwordToggleTint="#deffffff">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/title_text_inputer"
+                            style="@style/TextStyle15"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="-8dp"
+                            android:backgroundTint="@color/white_60"
+                            android:textColorHint="#deffffff" />
+                    </RelativeLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/tags_write_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_below="@+id/title_write_place"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/rounded_write_container" />
+
+                <TextView
+                    android:id="@+id/tags"
+                    style="@style/TextStyle14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tags_write_place"
+                    android:layout_alignTop="@+id/tags_write_place"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Tags" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tags_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tags"
+                    android:layout_alignStart="@+id/tags_write_place"
+                    android:layout_alignEnd="@+id/tags_write_place"
+                    android:layout_alignBottom="@+id/tags_write_place"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/teg_inputer"
+                            style="@style/TextStyle15"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="-8dp"
+                            android:backgroundTint="@color/white_60"
+                            android:textColorHint="#deffffff" />
+                    </RelativeLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/create_timelapse_btn"
+                    style="@style/TextStyle16"
+                    android:layout_width="185dp"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/tags_write_place"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="88dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="88dp"
+                    android:background="@drawable/create_timelapse_btn"
+                    android:text="CREATE TIMELAPSE" />
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

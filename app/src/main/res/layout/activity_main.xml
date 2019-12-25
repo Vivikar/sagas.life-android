@@ -16,7 +16,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/it_saga_logo_80_x_80" />
+        app:srcCompat="@drawable/it_saga_logo_80_x_80"
+        android:contentDescription="Logo"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/button2"
@@ -48,13 +50,12 @@
 
 
     <EditText
-        android:id="@+id/etUsername"
         style="@style/TextStyle3"
         android:layout_width="296dp"
         android:layout_height="56dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/white_12"
+        android:background="@color/white"
         android:backgroundTintMode="add"
         android:defaultFocusHighlightEnabled="true"
         android:ems="10"
@@ -67,7 +68,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView"
         style="@style/TextStyle6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
