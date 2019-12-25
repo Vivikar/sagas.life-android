@@ -12,6 +12,15 @@
         android:roundIcon="@drawable/it_saga_logo_80_x_80"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity
+            android:name=".Profile"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -32,6 +41,7 @@
             </intent-filter>
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
+
         </activity>
         <activity
             android:name=".SplashActivity"

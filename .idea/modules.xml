@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/Kotlin-sagas.life-android-app.iml" filepath="$PROJECT_DIR$/app/Kotlin-sagas.life-android-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/Kotlin-sagas.life-android-sagas_life.iml" filepath="$PROJECT_DIR$/Kotlin-sagas.life-android-sagas_life.iml" />
+
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/git-sagas.life-android-app.iml" filepath="$PROJECT_DIR$/app/git-sagas.life-android-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/git-sagas.life-android-sagas_life.iml" filepath="$PROJECT_DIR$/git-sagas.life-android-sagas_life.iml" />

@@ -25,11 +25,12 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed(
             {
                 startActivity(Intent(applicationContext, TimelapsefeedActivity::class.java))
+
                 finish()
             },
             splashScreenDuration
         )
     }
 
-    private fun getSplashScreenDuration() = 1000L
+    private fun getSplashScreenDuration() = 100L
 }
